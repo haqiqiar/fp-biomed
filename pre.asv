@@ -43,17 +43,10 @@ for i = 1:length(dirlist)
 end
 disp('finding r peaks');
 
-for i = 1:length(ecg_filtered)
+for i = 1:2
     disp(i);
     nw = ecg_filtered(i,:);
     r= extract(nw, 360);
-    vr=[];
-    vq=[];
-    vs=[];
-    xr=[];
-    xq=[];
-    xs=[];
-    
     for j = 1:length(r)
         
         rpoint = find(nw == r(j));
@@ -69,23 +62,19 @@ for i = 1:length(ecg_filtered)
         end
         q = min(nw(left:rpoint));
         s = min(nw(rpoint:right));
-
-        vr = [vr,r(j)];
-
+        vr = [vr,r];
         vq = [vq,q];
         vs = [vs,s];
         xr = [xr, rpoint];
-        xq = [xq, find(nw==q)];
-        xs = [xs, find(nw==s)];
+        xq = [xq, find(nw==vq)];
+        xs = [xs, find(nw==vs)];
         
+        %[valq,q] = findpeaks(nw(left:rpoint));
+        %[vals,s] = findpeaks(nw(rpoint:right));
     end
-    avr(i,1: length(vr)) = vr;
-    avq(i,1: length(vq)) = vq;
-    avs(i,1: length(vs)) = vs;
-    axr(i,1: length(xr)) = xr;
-    axq(i,1: length(xq)) = xq;
-    axs(i,1: length(xs)) = xs;
-
+    avr(i, [avr;vr];
+    avq=
+    
     
     
 end
